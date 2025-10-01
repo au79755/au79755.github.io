@@ -85,7 +85,7 @@ publication_category:
     title: 'Journals & Theses'
   conferences:
     title: 'Articles & Papers'
-  posters:
+  talks:
     title: 'Talks & Posters'
 
 # Site Settings
