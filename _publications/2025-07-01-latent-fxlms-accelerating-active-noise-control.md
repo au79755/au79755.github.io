@@ -5,7 +5,7 @@ category: conferences
 permalink: /publication/2025-07-01-latent-fxlms-accelerating-active-noise-control
 excerpt: 'This paper presents Latent FxLMS, a novel approach to accelerating active noise control using neural adaptive filters.'
 date: 2025-07-01
-venue: 'arXiv preprint'
+venue: 'European Acoustics Association'
 paperurl: 'https://arxiv.org/abs/2507.03854'
 citation: 'K. Sarkar, A. Lu, M. Mittal, Y. Zhuang, R. Corey, A. Singer, "Latent FxLMS: Accelerating Active Noise Control with Neural Adaptive Filters," arXiv preprint arXiv:2507.03854, 2025.'
 ---
