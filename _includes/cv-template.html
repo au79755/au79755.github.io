@@ -199,24 +199,24 @@
   </div>
   {% endif %}
   
-  {% if cv.teaching.size > 0 %}
+  {% if cv.experience.size > 0 %}
   <!-- Teaching -->
   <div class="cv-section">
     <h2>Teaching</h2>
     <ul class="cv-list">
-      {% for teaching in cv.teaching %}
+      {% for experience in cv.experience %}
       <li class="cv-item">
         <div class="cv-item-header">
-          <div class="cv-item-title">{{ teaching.course }}</div>
-          <div class="cv-item-date">{{ teaching.date | slice: 0, 4 }}</div>
+          <div class="cv-item-title">{{ experience.course }}</div>
+          <div class="cv-item-date">{{ experience.date | slice: 0, 4 }}</div>
         </div>
         <div class="cv-item-content">
-          <div class="cv-item-subtitle">{{ teaching.institution }}</div>
-          {% if teaching.role %}
-          <div class="cv-item-detail">Role: {{ teaching.role }}</div>
+          <div class="cv-item-subtitle">{{ experience.institution }}</div>
+          {% if experience.role %}
+          <div class="cv-item-detail">Role: {{ experience.role }}</div>
           {% endif %}
-          {% if teaching.description %}
-          <div class="cv-item-detail">{{ teaching.description }}</div>
+          {% if experience.description %}
+          <div class="cv-item-detail">{{ experience.description }}</div>
           {% endif %}
         </div>
       </li>
@@ -225,12 +225,12 @@
   </div>
   {% endif %}
   
-  {% if cv.portfolio.size > 0 %}
+  {% if cv.projects.size > 0 %}
   <!-- Portfolio -->
   <div class="cv-section">
     <h2>Portfolio</h2>
     <ul class="cv-list">
-      {% for item in cv.portfolio %}
+      {% for item in cv.projects %}
       <li class="cv-item">
         <div class="cv-item-header">
           <div class="cv-item-title">{{ item.name }}</div>

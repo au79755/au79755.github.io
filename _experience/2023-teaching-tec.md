@@ -1,8 +1,8 @@
 ---
 title: "Project Lead & Instructor, Technology Entrepreneur Center"
-collection: teaching
+collection: experience
 type: "Undergraduate Course"
-permalink: /teaching/2023-teaching-tec
+permalink: /experience/2023-experience-tec
 venue: "TEC"
 date: 2023-12-15
 location: "Champaign, IL, USA"
