@@ -1,10 +1,11 @@
 ---
-title: "Mentor, Undergraduate Research in Scientific Advancement"
+title: "Mentor"
 collection: experience
-type: "Undergraduate Course"
+type: "Teaching"
 permalink: /experience/2024-mentorship-ursa
-venue: "URSA"
+venue: "Undergraduate Research in Scientific Advancement"
 date: 2024-12-15
+edate: 2024-01-15
 location: "Champaign, IL, USA"
 ---
 
