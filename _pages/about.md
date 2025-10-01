@@ -15,22 +15,22 @@ As the co-founder and CTO of The Common AI, I lead the development of advanced A
 
 -----
 
-### **Experience & Vision**
+## **Experience & Vision**
 
 My work is built on a foundation of pioneering research and proven experience engineering robust, scalable software, to best offer real-world impact.
 
-#### **Research & Publications (University of Illinois, MSc & BSc)**
+### **Research & Publications (University of Illinois, MSc & BSc)**
 
   * **Pioneered** robust multimodal generative AI models for more intuitive and effective human-computer interaction.
   * **Published** extensively in leading journals on **multimodal data fusion**, **automated ML pipelines**, and **generative modeling for interactive systems**.
   * **Recognized** with prestigious awards for research excellence, including the Yunni and Maxine Pao Memorial and Dilip and Sandhya Sarwate Fellowships.
 
-#### **Enterprise Architecture & Engineering**
+### **Enterprise Architecture & Engineering**
 
   * **Led** the modernization of complex, legacy, and multilingual enterprise systems, building for nationwide scale.
   * **Expertise** in Generative AI, Deep Learning, Cloud Architecture & Full-Stack Development.
 
-#### **Leadership & Communication**
+### **Leadership & Communication**
 
   * **Mentored** over 20 emerging engineers, leading teams through advanced technical challenges.
   * **Articulated** complex AI and robotics concepts to diverse technical and non-technical stakeholders.
