@@ -66,3 +66,12 @@
     font-weight: 700;
   }
 }
+.masthead__menu-item.spacer {
+  width: 100%;
+  display: table-cell;
+}
+
+.masthead__menu-item.tail {
+  text-align: right;
+  white-space: nowrap;
+}
