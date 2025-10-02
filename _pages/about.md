@@ -7,30 +7,6 @@ redirect_from:
   - /about.html
 ---
 
-## Welcome
+I'm the co-founder and CTO at *The Common AI, Inc.*, where I build AI systems to solve hard problems, turning deep tech into real-world products. [Check us out](https://www.thecommonai.com/).
 
-I'm Austin Lu, an **AI leader, founder, and full-stack architect**.
-
-As the co-founder and CTO of The Common AI, I lead the development of advanced AI platforms for high-stakes, complex data environments. Our systems transform cutting-edge research into scalable, enterprise-ready products.
-
------
-
-## **Experience & Vision**
-
-My work is built on a foundation of pioneering research and proven experience engineering robust, scalable software, to best offer real-world impact.
-
-### **Research & Publications (University of Illinois, MSc & BSc)**
-
-  * **Pioneered** robust multimodal generative AI models for more intuitive and effective human-computer interaction.
-  * **Published** extensively in leading journals on **multimodal data fusion**, **automated ML pipelines**, and **generative modeling for interactive systems**.
-  * **Recognized** with prestigious awards for research excellence, including the Yunni and Maxine Pao Memorial and Dilip and Sandhya Sarwate Fellowships.
-
-### **Enterprise Architecture & Engineering**
-
-  * **Led** the modernization of complex, legacy, and multilingual enterprise systems, building for nationwide scale.
-  * **Expertise** in Generative AI, Deep Learning, Cloud Architecture & Full-Stack Development.
-
-### **Leadership & Communication**
-
-  * **Mentored** over 20 emerging engineers, leading teams through advanced technical challenges.
-  * **Articulated** complex AI and robotics concepts to diverse technical and non-technical stakeholders.
+My background is a mix of deep tech and practical software engineering. On the **AI/ML** side, I've worked on everything from R&D in **generative AI** and **multimodal data fusion** to analyzing model bias. On the software side, I'm a full-stack developer who's modernized enterprise systems, designed scalable web architectures, and built complex data integration pipelines.
