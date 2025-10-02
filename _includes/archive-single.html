@@ -39,13 +39,42 @@
     {% endif %}
 
         {% if post.collection == 'experience' %}
-        <p> <i>{{ post.venue }} ({{ post.type }})</i>, {{ post.date | default: "2019-01-01" | date: "%b %Y" }} - {{ post.edate | default: "Current" | date: "%b %Y" }} </p>  
+        <!-- <p> <i>{{ post.venue }} ({{ post.type }})</i>, {{ post.date | default: "2019-01-01" | date: "%b %Y" }} - {{ post.edate | default: "Current" | date: "%b %Y" }} </p>   -->
+          <p class="page__date">
+            <strong><i class="fa fa-fw fa-briefcase" aria-hidden="true"></i> Employer: </strong> 
+              {{ post.venue }}
+            <br/>
+            <strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Date: </strong> 
+              {{ post.date | default: "2019-01-01" | date: "%b %Y" }} - {{ post.edate | default: "Current" | date: "%b %Y" }}
+            <br/>
+            <strong><i class="fa fa-fw fa-city" aria-hidden="true"></i> Location: </strong> {{ post.location }}
+          </p>
         <!-- <p> <i>{{ post.venue }} ({{ post.type }})</i>, {{ post.date | default: "2019-01-01" | date: "%Y" }} - {{ post.edate | default: "Current" | edate: "%Y" }} </p> -->
         {% elsif post.collection == 'publications' %}
-          <p>Published by <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
+          <!-- <p>Published by <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p> -->
+          <p class="page__date">
+            <strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published: </strong>
+            {{ post.date | default: "1900-01-01" | date: "%b %Y" }}
+            <br/>
+            <strong><i class="fa fa-fw fa-landmark" aria-hidden="true"></i> Venue: </strong>
+            {{ post.venue }}
+          </p>
+        {% elsif post.collection == 'projects' %}
+          <p class="page__date">
+            <strong><i class="fa fa-fw fa-paper-plane" aria-hidden="true"></i> Completed: </strong>
+            <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">
+              {{ post.date | default: "1900-01-01" | date: "%b %Y" }}
+            </time>
+          </p>
         {% elsif post.date %}
-         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
-        {% endif %}
+          <p class="page__date">
+            <strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>
+              {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}
+            </strong>
+            <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">
+              {{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}
+            </time></p>
+         {% endif %}
 
     {% if post.excerpt and site.read_more != 'enabled' %}
     <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
