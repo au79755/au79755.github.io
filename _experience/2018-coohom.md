@@ -7,6 +7,7 @@ venue: "Coohom"
 date: 2018-05-01
 edate: 2018-08-31
 location: "Shanghai, China"
+excerpt: "Contributed to frontend and backend development for a high-growth SaaS interior design platform, focusing on UI/UX improvements and automation scripts for localization."
 ---
 
 As an intern at Coohom, a high-growth SaaS platform for interior design, I was integrated into the development team to contribute to both frontend and backend tasks. This role provided foundational experience in a fast-paced, agile startup environment.

@@ -7,6 +7,7 @@ venue: "Technology Entrepreneur Center"
 date: 2021-08-01
 edate: 2023-05-01
 location: "Champaign, IL, USA"
+excerpt: "Led technical instruction and mentorship for over 20 undergraduates in the Developing Breakthrough Projects course, guiding teams through hands-on product development in machine learning, robotics and data science."
 ---
 
 As a Technical Project Lead and Instructor for the Developing Breakthrough Projects course, I was responsible for guiding a cohort of over 20 undergraduate students through three semester-long product development cycles. The program focused on bridging the gap between theoretical engineering concepts and practical, hands-on application in machine learning, data science, and robotics.

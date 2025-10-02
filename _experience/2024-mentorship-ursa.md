@@ -1,5 +1,5 @@
 ---
-title: "Mentor"
+title: "Project Lead & Mentor"
 collection: experience
 type: "Teaching"
 permalink: /experience/2024-mentorship-ursa
@@ -7,9 +7,10 @@ venue: "Undergraduate Research in Scientific Advancement"
 date: 2024-12-15
 edate: 2024-01-15
 location: "Champaign, IL, USA"
+excerpt: "Drove a team of undergraduate researchers in developing novel signal processing applications for robotics, providing technical mentorship and professional development guidance throughout the year-long program."
 ---
 
-I served as a mentor for the Undergraduate Research in Scientific Advancement (URSA) program over two semesters, guiding a team of five promising engineering undergraduates through a year-long research endeavor. The program's goal is to provide students with authentic research experience by pairing them with experienced graduate mentors.
+I served as a mentor for the Undergraduate Research in Scientific Advancement (URSA) program over two semesters, guiding a team of five promising engineering undergraduates through a year-long research endeavor.
 
 ### **Program Overview**
 
