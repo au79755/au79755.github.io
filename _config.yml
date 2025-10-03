@@ -50,7 +50,7 @@ author:
   orcid            : # URL
   pubmed           : # URL
   researchgate     : # URL
-  
+
 # Publication Category - The following the list of publication categories and their headings
 publication_category:
   manuscripts:
@@ -59,6 +59,8 @@ publication_category:
     title: 'Articles & Papers'
   talks:
     title: 'Talks & Posters'
+  demos:
+    title: 'Tech Demos & Tutorials'
 
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/ for social media previews
@@ -199,9 +201,6 @@ collections:
   projects:
     output: true
     permalink: /:collection/:path/
-  # talks:
-  #   output: true
-  #   permalink: /:collection/:path/
 
 
 # These settings control how pages and collections are included in the site
@@ -251,14 +250,6 @@ defaults:
       author_profile: true
       share: false
       comment: false
-  # _talks
-  # - scope:
-  #     path: ""
-  #     type: talks
-  #   values:
-  #     layout: talk
-  #     author_profile: true
-  #     share: false
 
 
 # Sass/SCSS
