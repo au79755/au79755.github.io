@@ -1,3 +1,9 @@
 <script type="module" src="{{ base_path }}/assets/js/main.min.js"></script>
 
+<!-- Map dependencies (D3 + TopoJSON) and map code -->
+<script defer src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/d3-geo-projection@4/dist/d3-geo-projection.min.js"></script>
+<script defer src="{{ '/assets/js/map.js' | relative_url }}"></script>
+
 {% include analytics.html %}

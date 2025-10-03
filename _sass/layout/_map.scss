@@ -1,0 +1,89 @@
+#map-container {
+  width: 100%;
+  aspect-ratio: 2/1;
+  border: 1px solid var(--global-border-color);
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+  background: var(--global-bg-color);
+}
+
+#tooltip {
+  position: absolute;
+  background-color: var(--global-bg-color);
+  color: var(--global-text-color);
+  padding: 4px 6px;
+  border: 1px solid var(--global-border-color);
+  border-radius: $border-radius;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  font-size: $type-size-6;
+  max-width: 15%;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+#map-container .country {
+  fill: var(--global-text-color);
+  stroke: var(--global-bg-color);
+  stroke-width: 1.5px;
+}
+
+/* Legend styling aligned with marker types */
+.map-legend {
+  margin: 8px 8px 16px 8px;
+  padding: 0;
+  list-style: none;
+  display: block; /* stack vertically */
+}
+
+.map-legend__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0; /* tight vertical spacing */
+}
+
+.map-legend__item p { margin: 0; font-size: $type-size-5; line-height: 1.1; }
+
+.map-legend__swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--global-bg-color);
+  display: inline-block;
+}
+
+.map-legend__swatch--experience { background: $danger-color; }
+.map-legend__swatch--publication { background: $info-color; }
+.map-legend__swatch--demo { background: $success-color; }
+
+/* Prevent text caret/selection and tap highlight in map area */
+#map-container, #map-container svg, #map-container svg * {
+    caret-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+}
+svg:focus, .marker:focus {
+    outline: none;
+}
+.marker {
+    r: 6px;
+    stroke-width: 1.5px;
+    vector-effect: non-scaling-stroke;
+    fill: var(--global-text-color);
+    stroke: var(--global-bg-color);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: r 0.2s ease-in-out, fill 0.2s ease-in-out;
+}
+.marker.experience {
+    fill: $danger-color;
+}
+.marker.publication {
+    fill: $info-color;
+}
+.marker.demo {
+    fill: $success-color;
+}
