@@ -1,13 +1,3 @@
-#map-container {
-  width: 100%;
-  aspect-ratio: 2/1;
-  border: 1px solid var(--global-border-color);
-  border-radius: $border-radius;
-  overflow: hidden;
-  box-shadow: var(--box-shadow);
-  background: var(--global-bg-color);
-}
-
 #tooltip {
   position: absolute;
   background-color: var(--global-bg-color);
@@ -19,15 +9,53 @@
   opacity: 0;
   transition: opacity 0.2s;
   font-size: $type-size-6;
-  max-width: 15%;
+  max-width: 20%;
   white-space: normal;
   word-wrap: break-word;
+}
+#tooltip.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#tooltip .tooltip-main {
+  margin: 0;
+  padding: 0 18px 0 0;
+  display: inline; /* allow natural wrapping */
+}
+#tooltip .tooltip-close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: transparent;
+  border: none;
+  color: var(--global-text-color);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+#map-container {
+  width: 100%;
+  aspect-ratio: 2/1;
+  border: 1px solid var(--global-border-color);
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+  background: var(--global-bg-color);
+  margin-top: 1em;
 }
 
 #map-container .country {
   fill: var(--global-text-color);
   stroke: var(--global-bg-color);
   stroke-width: 1.5px;
+  opacity: 0.3;
 }
 
 /* Legend styling aligned with marker types */
@@ -38,52 +66,61 @@
   display: block; /* stack vertically */
 }
 
-.map-legend__item {
+/* Prevent text caret/selection and tap highlight in map area */
+#map-container, #map-container svg, #map-container svg * {
+  caret-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.marker {
+  r: 6px;
+  stroke-width: 1.5px;
+  vector-effect: non-scaling-stroke;
+  fill: var(--global-text-color);
+  stroke: var(--global-bg-color);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: r 0.2s ease-in-out, fill 0.2s ease-in-out;
+}
+
+svg:focus, .marker:focus {
+  outline: none;
+}
+/* Marker variants */
+.experience {
+  fill: $danger-color; /* Red color for pins */
+}
+.publication {
+  fill: $info-color;
+}
+.demo {
+  fill: $success-color;
+}
+
+/* Legend styles */
+.legend {
+  margin: 8px 0 0 0;
+  font-size: 14px;
+  color: var(--global-text-color);
+  list-style: none;
+  padding: 0;
+}
+.legend-item {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin: 2px 0; /* tight vertical spacing */
 }
-
-.map-legend__item p { margin: 0; font-size: $type-size-5; line-height: 1.1; }
-
-.map-legend__swatch {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: 1px solid var(--global-bg-color);
+.legend-dot {
+  width: 11px;
+  height: 11px;
   display: inline-block;
 }
-
-.map-legend__swatch--experience { background: $danger-color; }
-.map-legend__swatch--publication { background: $info-color; }
-.map-legend__swatch--demo { background: $success-color; }
-
-/* Prevent text caret/selection and tap highlight in map area */
-#map-container, #map-container svg, #map-container svg * {
-    caret-color: transparent;
-    -webkit-tap-highlight-color: transparent;
+.legend-dot circle {
+  stroke: var(--global-bg-color);
+  stroke-width: 1px;
 }
-svg:focus, .marker:focus {
-    outline: none;
-}
-.marker {
-    r: 6px;
-    stroke-width: 1.5px;
-    vector-effect: non-scaling-stroke;
-    fill: var(--global-text-color);
-    stroke: var(--global-bg-color);
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    transition: r 0.2s ease-in-out, fill 0.2s ease-in-out;
-}
-.marker.experience {
-    fill: $danger-color;
-}
-.marker.publication {
-    fill: $info-color;
-}
-.marker.demo {
-    fill: $success-color;
+.legend-dot square {
+  stroke: var(--global-bg-color);
+  stroke-width: 1px;
 }
