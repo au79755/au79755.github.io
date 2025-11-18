@@ -10,28 +10,30 @@ const legendItems = [
 // Markers config
 const markers = [
   // PROFESSIONAL EXPERIENCE
-  { type: "experience", role: "CTO & Cofounder", place: "Dallas", coordinates: [-96.9, 32.78], url: "https://austinlu.com/experience/2025-cofounder" }, // tweak: slightly west
-  { type: "experience", role: "Project Lead", place: "Champaign", coordinates: [-88.2434, 40.1164], url: "https://austinlu.com/experience/2024-mentorship-ursa" },
-  { type: "experience", role: "Full Stack Engineer", place: "Astoria", coordinates: [-90.3679, 40.1589], url: "https://austinlu.com/experience/2023-kkspc" },
-  { type: "experience", role: "Software Developer (Intern)", place: "Shanghai", coordinates: [121.4737, 31.2304], url: "https://austinlu.com/experience/2018-coohom-intern" },
+  { type: "experience", content: '<a href="https://austinlu.com/experience/2025-cofounder" target="_blank" rel="noopener noreferrer"><strong>CTO & Cofounder</strong></a>', place: "Dallas", coordinates: [-96.9, 32.78] }, // tweak: slightly west
+  { type: "experience", content: '<a href="https://austinlu.com/experience/2024-mentorship-ursa" target="_blank" rel="noopener noreferrer"><strong>Project Lead</strong></a>', place: "Champaign", coordinates: [-88.2434, 40.1164] },
+  { type: "experience", content: '<a href="https://austinlu.com/experience/2023-kkspc" target="_blank" rel="noopener noreferrer"><strong>Full Stack Engineer</strong></a>', place: "Astoria", coordinates: [-90.3679, 40.1589] },
+  { type: "experience", content: '<a href="https://austinlu.com/experience/2018-coohom-intern" target="_blank" rel="noopener noreferrer"><strong>Software Developer (Intern)</strong></a>', place: "Shanghai", coordinates: [121.4737, 31.2304] },
   
   // RESEARCH & INNOVATION
-  { type: "publication", role: "Published Research (AI/ML)", place: "Malaga", coordinates: [-4.4214, 36.7213], url: "https://austinlu.com/publication/2025-07-05-latent-fxlms" },
-  { type: "publication", role: "Published Research (HCI)", place: "Ottawa", coordinates: [-75.6972, 45.4215], url: "https://austinlu.com/publication/2024-03-01-delay-constrained" },
-  { type: "publication", role: "Published Research (Cloud)", place: "Bamberg", coordinates: [10.8862, 49.8988], url: "https://austinlu.com/publication/2022-05-08-mechatronic" },
-  { type: "publication", role: "Marine Expedition Training", place: "Shinnecock Bay", coordinates: [-72.4949, 40.8534], url: "" },
+  { type: "publication", content: '<a href="https://austinlu.com/publication/2025-07-05-latent-fxlms" target="_blank" rel="noopener noreferrer"><strong>Published Research (AI/ML)</strong></a>', place: "Malaga", coordinates: [-4.4214, 36.7213] },
+  { type: "publication", content: '<a href="https://austinlu.com/publication/2024-03-01-delay-constrained" target="_blank" rel="noopener noreferrer"><strong>Published Research (HCI)</strong></a>', place: "Ottawa", coordinates: [-75.6972, 45.4215] },
+  { type: "publication", content: '<a href="https://austinlu.com/publication/2022-05-08-mechatronic" target="_blank" rel="noopener noreferrer"><strong>Published Research (Cloud)</strong></a>', place: "Bamberg", coordinates: [10.8862, 49.8988] },
+  { type: "publication", content: '<strong>Marine Expedition Training</strong>', place: "Shinnecock Bay", coordinates: [-72.4949, 40.8534] },
   
   // INTERACTIVE DEMONSTRATIONS
-  { type: "demo", role: "Intl. Partners Exhibition", place: "Chicago", coordinates: [-87.6298, 41.8781], url: "https://austinlu.com/publication/2024-08-27-discovery-partners" },
-  { type: "demo", role: "Digital Twin Demo", place: "New Paltz", coordinates: [-74.0746, 41.7474], url: "https://austinlu.com/publication/2023-10-23-interactive-demo" },
-  { type: "demo", role: "Cloud-based Research Platform", place: "Nashville", coordinates: [-86.7816, 36.1627], url: "https://austinlu.com/publication/2022-10-01-cloud-research" },
-  { type: "demo", role: "Cloud-based Research Platform", place: "Munich", coordinates: [11.5761, 48.1371], url: "https://austinlu.com/publication/2022-10-01-cloud-research" },
+  { type: "demo", content: '<a href="https://austinlu.com/publication/2024-08-27-discovery-partners" target="_blank" rel="noopener noreferrer"><strong>Intl. Partners Exhibition</strong></a>', place: "Chicago", coordinates: [-87.6298, 41.8781] },
+  { type: "demo", content: '<a href="https://austinlu.com/publication/2023-10-23-interactive-demo" target="_blank" rel="noopener noreferrer"><strong>Digital Twin Demo</strong></a>', place: "New Paltz", coordinates: [-74.0746, 41.7474] },
+  { type: "demo", content: '<a href="https://austinlu.com/publication/2022-10-01-cloud-research" target="_blank" rel="noopener noreferrer"><strong>Cloud-based Research Platform</strong></a>', place: "Nashville", coordinates: [-86.7816, 36.1627] },
+  { type: "demo", content: '<a href="https://austinlu.com/publication/2022-10-01-cloud-research" target="_blank" rel="noopener noreferrer"><strong>Cloud-based Research Platform</strong></a>', place: "Munich", coordinates: [11.5761, 48.1371] },
 
   // WORK DEMOS (CLIENT LOCATION)
-  { type: "demo", role: "AI Copilot Pilot for Local Town", place: "Indiana", coordinates: [-85.15, 41.07], url: "" },
-  { type: "demo", role: "AI Copilot Demo for Local City", place: "California", coordinates: [-122.4194, 37.7749], url: "" },
-  { type: "demo", role: "AI Permit Reviewer Pilot for Local City", place: "Washington", coordinates: [-122.3321, 47.6062], url: "" },
-  { type: "demo", role: "AI Permit Reviewer Demo for Local City", place: "Texas", coordinates: [-95.3698, 29.7604], url: "" },
+  { type: "demo", content: '<strong>AI Chatbot Pilot</strong> for city 311 platform', place: "Indiana", coordinates: [-85.15, 41.07] },
+  { type: "demo", content: '<strong>AI Chatbot Demo</strong> for city staff', place: "California", coordinates: [-122.4194, 37.7749] },
+  { type: "demo", content: '<strong>AI Permit Reviewer Paid Pilot</strong> for city planners', place: "Washington", coordinates: [-122.3321, 47.6062] },
+  { type: "demo", content: '<strong>AI Permit Reviewer Demo</strong> for city CIOs', place: "Texas", coordinates: [-95.3698, 29.7604] },
+  { type: "demo", content: 'Showcasing our <strong>AI Permit Reviewer and Chatbot</strong>', place: '<a href="https://fall.smartcitiesconnect.org/" target="_blank" rel="noopener noreferrer"><strong>Smart Cities Connect 2025</strong></a> (National Harbor, MD)', coordinates: [-77.0369, 38.9638] },
+  
 ];
 
 const d3 = window.d3;
@@ -152,13 +154,9 @@ function getMarkerId(d) {
 }
 
 function renderTooltip(d) {
-  const titleHtml = d.url
-      ? `<a href="${d.url}" target="_blank" rel="noopener noreferrer"><strong>${d.role}</strong></a>`
-      : `<strong>${d.role}</strong>`;
-
   tooltip.html(`
       <div class="tooltip-main">
-        ${titleHtml} in ${d.place}
+        ${d.content} in ${d.place}
       </div>
       <button class="tooltip-close" aria-label="Close">×</button>
   `);
