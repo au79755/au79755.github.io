@@ -101,13 +101,8 @@ svg.on("wheel.stickyZoom", (event) => {
   zoom.scaleBy(svg, k, [mx, my]);
 });
 
-svg.on("dblclick.stickyZoom", (event) => {
-  if (!stickyMarker) return;
-  event.preventDefault();
-  const [mx, my] = currentZoomTransform.apply(projection(stickyMarker.coordinates));
-  // Double-click to zoom in by factor 2 centered on the sticky marker
-  zoom.scaleBy(svg, 2, [mx, my]);
-});
+svg.on("dblclick.stickyZoom", null);
+svg.on("dblclick.zoom", null);
 
 const mapDataUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
