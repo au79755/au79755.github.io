@@ -2,6 +2,7 @@
 (function () {
   // Legend config and renderer
 const legendItems = [
+  { key: "ai", label: "The Common AI, Inc. (Pilots, Demos, etc.)" },
   { key: "experience", label: "Professional Experience" },
   { key: "publication", label: "Research & Innovation" },
   { key: "demo", label: "Interactive Demonstrations" },
@@ -28,11 +29,11 @@ const markers = [
   { type: "demo", content: '<a href="https://austinlu.com/publication/2022-10-01-cloud-research" target="_blank" rel="noopener noreferrer"><strong>Cloud-based Research Platform</strong></a>', place: "Munich", coordinates: [11.5761, 48.1371] },
 
   // WORK DEMOS (CLIENT LOCATION)
-  { type: "demo", content: '<strong>AI Chatbot Pilot</strong> for city 311 platform', place: "Indiana", coordinates: [-85.15, 41.07] },
-  { type: "demo", content: '<strong>AI Chatbot Demo</strong> for city staff', place: "California", coordinates: [-122.4194, 37.7749] },
-  { type: "demo", content: '<strong>AI Permit Reviewer Paid Pilot</strong> for city planners', place: "Washington", coordinates: [-122.3321, 47.6062] },
-  { type: "demo", content: '<strong>AI Permit Reviewer Demo</strong> for city CIOs', place: "Texas", coordinates: [-95.3698, 29.7604] },
-  { type: "demo", content: 'Showcasing our <strong>AI Permit Reviewer and Chatbot</strong>', place: '<a href="https://fall.smartcitiesconnect.org/" target="_blank" rel="noopener noreferrer"><strong>Smart Cities Connect 2025</strong></a> (National Harbor, MD)', coordinates: [-77.0369, 38.9638] },
+  { type: "ai", content: '<strong>AI Chatbot Pilot</strong> for city 311 platform', place: "Indiana", coordinates: [-85.15, 41.07] },
+  { type: "ai", content: '<strong>AI Chatbot Demo</strong> for city staff', place: "California", coordinates: [-122.4194, 37.7749] },
+  { type: "ai", content: '<strong>AI Permit Reviewer Paid Pilot</strong> for city planners', place: "Washington", coordinates: [-122.3321, 47.6062] },
+  { type: "ai", content: '<strong>AI Permit Reviewer Demo</strong> for city CIOs', place: "Texas", coordinates: [-95.3698, 29.7604] },
+  { type: "ai", content: 'Showcasing our <strong>AI Permit Reviewer and Chatbot</strong>', place: '<a href="https://fall.smartcitiesconnect.org/" target="_blank" rel="noopener noreferrer"><strong>Smart Cities Connect 2025</strong></a> (National Harbor, MD)', coordinates: [-77.0369, 38.9638] },
   
 ];
 

@@ -95,11 +95,14 @@ svg:focus, .marker:focus {
   outline: none;
 }
 /* Marker variants */
+.ai {
+  fill: $info-color;
+}
 .experience {
-  fill: $danger-color; /* Red color for pins */
+  fill: $danger-color;
 }
 .publication {
-  fill: $info-color;
+  fill: $warning-color;
 }
 .demo {
   fill: $success-color;
