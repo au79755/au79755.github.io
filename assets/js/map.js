@@ -39,7 +39,7 @@ const markers = [
 const d3 = window.d3;
 const topojson = window.topojson;
 
-const radius = "6px";
+const radius = 6;
 const container = document.getElementById('map-container');
 let { width, height } = container.getBoundingClientRect();
 if (!width || !height) { width = 1000; height = 600; }

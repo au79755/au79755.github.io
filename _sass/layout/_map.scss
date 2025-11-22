@@ -73,7 +73,6 @@
 }
 
 .marker {
-  r: 6px;
   stroke-width: 1.5px;
   vector-effect: non-scaling-stroke;
   fill: var(--global-text-color);
@@ -81,7 +80,15 @@
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
-  transition: r 0.2s ease-in-out, fill 0.2s ease-in-out;
+  /* Use transform-based scaling for hover/focus states */
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.15s ease-in-out, fill 0.2s ease-in-out;
+}
+/* Hover/active enlargement without changing the circle's base r */
+.marker:hover,
+.marker.is-active {
+  transform: scale(1.4);
 }
 
 svg:focus, .marker:focus {
