@@ -69,10 +69,20 @@ const zoom = d3.zoom()
   .extent([[0, 0], [width, height]])
   .translateExtent([[0, 0], [width, height]])
   .filter((event) => {
-      // When a tooltip is active, override default wheel/dblclick zoom handling
-      if (stickyMarker && (event.type === "wheel" || event.type === "dblclick")) return false;
+      // When a tooltip is active, override default wheel zoom handling
+      if (stickyMarker && event.type === "wheel") return false;
       // Default filter from d3-zoom: allow wheel (even with ctrlKey), disallow non-primary buttons
       return (!event.ctrlKey || event.type === "wheel") && !event.button;
+  })
+  .on("start", (event) => {
+      // Hide tooltip if the user initiates a drag/pan interaction
+      const t = event?.sourceEvent?.type;
+      if (t === "mousedown" || t === "touchstart" || t === "pointerdown") {
+          if (stickyMarker) {
+              stickyMarker = null;
+              tooltip.classed("is-visible", false);
+          }
+      }
   })
   .on("zoom", (event) => {
       currentZoomTransform = event.transform;
@@ -81,10 +91,6 @@ const zoom = d3.zoom()
       gMarkers.selectAll("circle.marker")
           .attr("cx", d => event.transform.apply(projection(d.coordinates))[0])
           .attr("cy", d => event.transform.apply(projection(d.coordinates))[1]);
-      // Update square positions
-      gMarkers.selectAll("rect.marker")
-          .attr("x", d => event.transform.apply(projection(d.coordinates))[0] - radius)
-          .attr("y", d => event.transform.apply(projection(d.coordinates))[1] - radius);
       if (stickyMarker) {
           positionTooltipAtElement(document.querySelector(`circle.marker.${stickyMarker.type}[data-id='${getMarkerId(stickyMarker)}']`));
       }
@@ -169,39 +175,11 @@ function positionTooltipAtElement(el) {
   if (!el) return;
   const rect = el.getBoundingClientRect();
   // Preferred placement: to the right and slightly above the marker
-  let left = rect.left + window.scrollX + rect.width / 2 + 10;
-  let top = rect.top + window.scrollY - 10;
+  const left = rect.left + window.scrollX + rect.width / 2 + 10;
+  const top = rect.top + window.scrollY - 10;
 
   const node = tooltip.node();
   if (!node) return;
-  const tipRect = node.getBoundingClientRect();
-  const margin = 12;
-
-  // Clamp within map container if available, otherwise fallback to window
-  const containerRect = (window.document.getElementById('map-container') || {}).getBoundingClientRect?.();
-  const clampLeftStart = containerRect ? (containerRect.left + window.scrollX) : window.scrollX;
-  const clampTopStart = containerRect ? (containerRect.top + window.scrollY) : window.scrollY;
-  const clampWidth = containerRect ? containerRect.width : window.innerWidth;
-  const clampHeight = containerRect ? containerRect.height : window.innerHeight;
-
-  const minLeft = clampLeftStart + margin;
-  const minTop = clampTopStart + margin;
-  const maxLeft = clampLeftStart + clampWidth - tipRect.width - margin;
-  const maxTop = clampTopStart + clampHeight - tipRect.height - margin;
-
-  // If tooltip would overflow on the right, place it to the left of the marker
-  if (left > maxLeft) {
-      left = rect.left + window.scrollX - tipRect.width - 10;
-  }
-  // If tooltip would overflow on the left, clamp to minLeft
-  if (left < minLeft) left = minLeft;
-
-  // If tooltip would overflow on the bottom, place it above the marker
-  if (top > maxTop) {
-      top = rect.top + window.scrollY - tipRect.height - 10;
-  }
-  // If tooltip would overflow on the top, clamp to minTop
-  if (top < minTop) top = minTop;
 
   tooltip.style("left", left + "px").style("top", top + "px");
 }
