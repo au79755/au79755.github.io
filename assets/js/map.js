@@ -144,6 +144,13 @@ function drawMarkers() {
       .attr("cx", d => projection(d.coordinates)[0])
       .attr("cy", d => projection(d.coordinates)[1])
       .attr("r", radius)
+      .on("mouseenter", (event, d) => {
+          const id = d.id || getMarkerId(d);
+          showArcsForMarkerId(id);
+      })
+      .on("mouseleave", () => {
+          hideAllArcs();
+      })
       .on("click", (event, d) => {
           event.stopPropagation();
           stickyMarker = d;
@@ -260,17 +267,35 @@ function drawArcs() {
     for (let i = 0; i < list.length - 1; i++) {
       const a = list[i];
       const b = list[i + 1];
-      arcs.push({ type, d: buildCurvedArcPath(a.coordinates, b.coordinates) });
+      const sourceId = a.id || getMarkerId(a);
+      const targetId = b.id || getMarkerId(b);
+      // Compute curved path with consistent upward concavity
+      const dPath = buildCurvedArcPath(a.coordinates, b.coordinates);
+      arcs.push({ type, sourceId, targetId, d: dPath });
     }
   });
   const s = gMap.selectAll("path.arc").data(arcs);
   s.enter()
     .append("path")
     .attr("class", d => `arc ${d.type}`)
+    .attr("data-src", d => d.sourceId)
+    .attr("data-tgt", d => d.targetId)
     .attr("vector-effect", "non-scaling-stroke")
     .attr("d", d => d.d);
-  s.attr("class", d => `arc ${d.type}`).attr("d", d => d.d);
+  s.attr("class", d => `arc ${d.type}`)
+    .attr("data-src", d => d.sourceId)
+    .attr("data-tgt", d => d.targetId)
+    .attr("d", d => d.d);
   s.exit().remove();
+}
+
+function showArcsForMarkerId(markerId) {
+  const isLinked = d => d.sourceId === markerId || d.targetId === markerId;
+  gMap.selectAll("path.arc").classed("is-visible", isLinked);
+}
+
+function hideAllArcs() {
+  gMap.selectAll("path.arc").classed("is-visible", false);
 }
 
 // Draw arcs after countries and markers are on the map

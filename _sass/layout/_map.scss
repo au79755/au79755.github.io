@@ -133,11 +133,17 @@ svg:focus, .marker:focus {
 .arc {
   fill: none;
   stroke: var(--global-text-color);
-  opacity: 0.6;
-  stroke-width: 1.5px;
-  stroke-dasharray: 4 4;
+  opacity: 0; /* hidden by default */
+  stroke-width: 3px; /* bumped 2x */
+  stroke-dasharray: 6 8; /* longer dashes for visibility */
   stroke-linecap: round;
   vector-effect: non-scaling-stroke;
+}
+
+/* Visible state when hovering linked markers */
+.arc.is-visible {
+  opacity: 0.7;
+  animation: arc-dash-flow 1100ms linear infinite;
 }
 
 /* Arc colors inherit section palette */
@@ -152,4 +158,13 @@ svg:focus, .marker:focus {
 }
 .arc.demo {
   stroke: $success-color;
+}
+
+/* Mid-arrow indicator styling (inherits type color) */
+/* (removed; using animation-only direction cues) */
+
+/* Flowing dash animation for directionality */
+@keyframes arc-dash-flow {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -28; }
 }
