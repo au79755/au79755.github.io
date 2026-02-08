@@ -46,14 +46,9 @@ const gMap = svg.append("g");
 const gMarkers = svg.append("g");
 const tooltip = d3.select("#tooltip");
 let stickyMarker = null;
-let currentZoomTransform = d3.zoomIdentity;
 
 const projection = d3.geoMercator();
-
 const pathGenerator = d3.geoPath().projection(projection);
-
-// Zoom is set up AFTER data loads and projection is fitted (see below)
-let zoom;
 
 const mapDataUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
@@ -70,9 +65,8 @@ d3.json(mapDataUrl).then(data => {
     type: "FeatureCollection",
     features: states.features.filter(f => conusIds.has(Number(f.id)))
   };
-  // Fit projection to CONUS states with padding to ensure centered view
-  const fitPad = 20;
-  projection.fitExtent([[fitPad, fitPad], [width - fitPad, height - fitPad]], conus);
+  // Fit projection to CONUS states edge-to-edge (no padding)
+  projection.fitSize([width, height], conus);
 
   gMap.selectAll("path.state")
       .data(conus.features)
@@ -94,94 +88,36 @@ d3.json(mapDataUrl).then(data => {
       .attr("vector-effect", "non-scaling-stroke")
       .attr("d", pathGenerator);
 
-  // Now that projection is fitted, set up zoom with correct CONUS bounds
-  const [[x0, y0], [x1, y1]] = pathGenerator.bounds(conus);
-  const pad = 20;
-
-  zoom = d3.zoom()
-    .scaleExtent([1, 8])
-    .extent([[0, 0], [width, height]])
-    .translateExtent([[x0 - pad, y0 - pad], [x1 + pad, y1 + pad]])
-    .filter((event) => {
-        if (stickyMarker && event.type === "wheel") return false;
-        return (!event.ctrlKey || event.type === "wheel") && !event.button;
-    })
-    .on("start", (event) => {
-        const t = event?.sourceEvent?.type;
-        if (t === "mousedown" || t === "touchstart" || t === "pointerdown") {
-            if (stickyMarker) {
-                stickyMarker = null;
-                tooltip.classed("is-visible", false);
-                hideAllArcs();
-            }
-        }
-    })
-    .on("zoom", (event) => {
-        currentZoomTransform = event.transform;
-        gMap.attr("transform", event.transform);
-        gMarkers.selectAll("circle.marker")
-            .attr("cx", d => {
-              const p = projection(d.coordinates);
-              return p ? event.transform.apply(p)[0] : null;
-            })
-            .attr("cy", d => {
-              const p = projection(d.coordinates);
-              return p ? event.transform.apply(p)[1] : null;
-            });
-        if (stickyMarker) {
-            positionTooltipAtElement(document.querySelector(`circle.marker.${stickyMarker.type}[data-id='${stickyMarker.id || getMarkerId(stickyMarker)}']`));
-        }
-    });
-
-  svg.call(zoom);
-
-  // Disable double-click zoom
-  svg.on("dblclick.zoom", null);
-
-  // When a tooltip is active, enforce zoom around that marker
-  svg.on("wheel.stickyZoom", (event) => {
-    if (!stickyMarker) return;
-    event.preventDefault();
-    const k = Math.pow(2, -event.deltaY * 0.002);
-    const p = projection(stickyMarker.coordinates);
-    if (!p) return;
-    const [mx, my] = currentZoomTransform.apply(p);
-    zoom.scaleBy(svg, k, [mx, my]);
-  });
-
   drawMarkers();
   drawArcs();
-
-  // Render legend after DOM is ready
   renderLegend();
 });
 
-function drawMarkers() {
-  const circlesData = markers
+// Close tooltip when clicking outside a marker
+svg.on("click", () => {
+  if (stickyMarker) {
+    stickyMarker = null;
+    tooltip.classed("is-visible", false);
+    gMap.selectAll("path.arc").classed("is-highlight", false);
+  }
+});
 
+function drawMarkers() {
   gMarkers.selectAll("circle.marker")
-      .data(circlesData, d => d.id || getMarkerId(d))
+      .data(markers, d => d.id || getMarkerId(d))
       .enter()
       .append("circle")
       .attr("class", d => `marker ${d.type}`)
       .attr("data-id", d => d.id || getMarkerId(d))
       .attr("vector-effect", "non-scaling-stroke")
-      .attr("cx", d => {
-        const p = projection(d.coordinates);
-        return p ? p[0] : null;
-      })
-      .attr("cy", d => {
-        const p = projection(d.coordinates);
-        return p ? p[1] : null;
-      })
-      .style("display", d => (projection(d.coordinates) ? null : "none"))
+      .attr("cx", d => projection(d.coordinates)[0])
+      .attr("cy", d => projection(d.coordinates)[1])
       .attr("r", radius)
       .on("mouseenter", (event, d) => {
-          const id = d.id || getMarkerId(d);
-          showArcsForMarkerId(id);
+          gMap.selectAll("path.arc").classed("is-highlight", dd => dd.type === d.type);
       })
       .on("mouseleave", () => {
-          if (!stickyMarker) hideAllArcs();
+          if (!stickyMarker) gMap.selectAll("path.arc").classed("is-highlight", false);
       })
       .on("click", (event, d) => {
           event.stopPropagation();
@@ -206,18 +142,17 @@ function renderTooltip(d) {
   tooltip.select(".tooltip-close").on("click", () => {
       stickyMarker = null;
       tooltip.classed("is-visible", false);
-      hideAllArcs();
+      gMap.selectAll("path.arc").classed("is-highlight", false);
   });
 
   tooltip.classed("is-visible", true);
-  // While tooltip is open, show all arcs for this category
-  showArcsForType(d.type);
+  // Keep arc highlight while tooltip is open
+  gMap.selectAll("path.arc").classed("is-highlight", dd => dd.type === d.type);
 }
 
 function positionTooltipAtElement(el) {
   if (!el) return;
   const rect = el.getBoundingClientRect();
-  // Preferred placement: to the right and slightly above the marker
   const left = rect.left + window.scrollX + rect.width / 2 + 10;
   const top = rect.top + window.scrollY - 10;
 
@@ -231,7 +166,6 @@ function renderLegend() {
   const container = d3.select("#legend-text");
   if (container.empty()) return;
 
-  // Remove any previously rendered items (keep any headings inside the list)
   container.selectAll("li.legend-item").remove();
 
   const items = container
@@ -261,12 +195,8 @@ function renderLegend() {
   items.append("span").text(d => d.label);
 }
 
-// ----- Optional arcs between WORK DEMOS (ai) markers -----
-const arcCurvature = 0.35; // increase for more pronounced bowing
-
-function getMarkerById(id) {
-  return markers.find(m => m.id === id);
-}
+// ----- Arcs between consecutive markers per category -----
+const arcCurvature = 0.7;
 
 function buildCurvedArcPath(fromLonLat, toLonLat, curvature = arcCurvature) {
   const [ax, ay] = projection(fromLonLat);
@@ -275,17 +205,12 @@ function buildCurvedArcPath(fromLonLat, toLonLat, curvature = arcCurvature) {
   const my = (ay + by) / 2;
   const dx = bx - ax;
   const dy = by - ay;
-  // Perpendicular (normal) vector
   let nx = -dy;
   let ny = dx;
   const nlen = Math.hypot(nx, ny) || 1;
   nx /= nlen;
   ny /= nlen;
-  // Force concavity upwards (toward screen "north")
-  if (ny > 0) {
-    nx = -nx;
-    ny = -ny;
-  }
+  if (ny > 0) { nx = -nx; ny = -ny; }
   const distance = Math.hypot(dx, dy);
   const offset = distance * curvature;
   const cx = mx + nx * offset;
@@ -294,7 +219,7 @@ function buildCurvedArcPath(fromLonLat, toLonLat, curvature = arcCurvature) {
 }
 
 function drawArcs() {
-  const categories = ["ai", "experience", "publication", "demo"];
+  const categories = ["ai", "publication"];
   const arcs = [];
   categories.forEach(type => {
     const list = markers.filter(m => m.type === type && Array.isArray(m.coordinates));
@@ -304,43 +229,19 @@ function drawArcs() {
       const b = list[i + 1];
       const sourceId = a.id || getMarkerId(a);
       const targetId = b.id || getMarkerId(b);
-      // Skip arcs if either endpoint is outside the projection (e.g., non-US coords)
-      const pa = projection(a.coordinates);
-      const pb = projection(b.coordinates);
-      if (!pa || !pb) continue;
-      // Compute curved path with consistent upward concavity
       const dPath = buildCurvedArcPath(a.coordinates, b.coordinates);
       arcs.push({ type, sourceId, targetId, d: dPath });
     }
   });
-  const s = gMap.selectAll("path.arc").data(arcs);
-  s.enter()
+  gMap.selectAll("path.arc")
+    .data(arcs)
+    .enter()
     .append("path")
     .attr("class", d => `arc ${d.type}`)
     .attr("data-src", d => d.sourceId)
     .attr("data-tgt", d => d.targetId)
     .attr("vector-effect", "non-scaling-stroke")
     .attr("d", d => d.d);
-  s.attr("class", d => `arc ${d.type}`)
-    .attr("data-src", d => d.sourceId)
-    .attr("data-tgt", d => d.targetId)
-    .attr("d", d => d.d);
-  s.exit().remove();
 }
 
-function showArcsForMarkerId(markerId) {
-  const isLinked = d => d.sourceId === markerId || d.targetId === markerId;
-  gMap.selectAll("path.arc").classed("is-visible", isLinked);
-}
-
-function showArcsForType(type) {
-  gMap.selectAll("path.arc").classed("is-visible", d => d.type === type);
-}
-
-function hideAllArcs() {
-  gMap.selectAll("path.arc").classed("is-visible", false);
-}
-
-// Draw arcs after countries and markers are on the map
-// (inside the JSON load callback, after drawMarkers)
 })();
