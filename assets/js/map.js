@@ -17,24 +17,24 @@ const markers = [
   { type: "experience", content: '<a href="https://austinlu.com/experience/2025-cofounder" target="_blank" rel="noopener noreferrer"><strong>CTO & Cofounder</strong></a>', place: "Dallas", coordinates: [-96.9, 32.78] }, // tweak: slightly west
   
   // RESEARCH & INNOVATION
-  { type: "publication", content: '<a href="https://austinlu.com/publication/2022-05-08-mechatronic" target="_blank" rel="noopener noreferrer"><strong>Published Research (Cloud)</strong></a>', place: "Bamberg", coordinates: [10.8862, 49.8988] },
+  { type: "publication", content: '<a href="https://austinlu.com/publication/2022-05-08-mechatronic" target="_blank" rel="noopener noreferrer"><strong>Published Research (Cloud Robotics)</strong></a>', place: "Bamberg", coordinates: [10.8862, 49.8988] },
+  { type: "publication", content: '<a href="https://austinlu.com/publication/2022-05-08-mechatronic" target="_blank" rel="noopener noreferrer"><strong>Published Research (Cloud Robotics)</strong></a>', place: "Nashville", coordinates: [-86.7816, 36.1627] },
   { type: "publication", content: '<a href="https://austinlu.com/publication/2024-03-01-delay-constrained" target="_blank" rel="noopener noreferrer"><strong>Published Research (HCI)</strong></a>', place: "Ottawa", coordinates: [-75.6972, 45.4215] },
   { type: "publication", content: '<strong>Marine Expedition Training</strong>', place: "Shinnecock Bay", coordinates: [-72.4949, 40.8534] },
   { type: "publication", content: '<a href="https://austinlu.com/publication/2025-07-05-latent-fxlms" target="_blank" rel="noopener noreferrer"><strong>Published Research (AI/ML)</strong></a>', place: "Malaga", coordinates: [-4.4214, 36.7213] },
   
   // INTERACTIVE DEMONSTRATIONS
-  { type: "demo", content: '<a href="https://austinlu.com/publication/2022-10-01-cloud-research" target="_blank" rel="noopener noreferrer"><strong>Cloud-based Research Platform</strong></a>', place: "Munich", coordinates: [11.5761, 48.1371] },
-  { type: "demo", content: '<a href="https://austinlu.com/publication/2022-10-01-cloud-research" target="_blank" rel="noopener noreferrer"><strong>Cloud-based Research Platform</strong></a>', place: "Nashville", coordinates: [-86.7816, 36.1627] },
+  { type: "demo", content: '<a href="https://austinlu.com/publication/2022-10-01-cloud-research" target="_blank" rel="noopener noreferrer"><strong>Cloud-Powered Research Platform</strong></a>', place: "Munich", coordinates: [11.5761, 48.1371] },
   { type: "demo", content: '<a href="https://austinlu.com/publication/2024-08-27-discovery-partners" target="_blank" rel="noopener noreferrer"><strong>Intl. Partners Exhibition</strong></a>', place: "Chicago", coordinates: [-87.6298, 41.8781] },
   { type: "demo", content: '<a href="https://austinlu.com/publication/2023-10-23-interactive-demo" target="_blank" rel="noopener noreferrer"><strong>Digital Twin Demo</strong></a>', place: "New Paltz", coordinates: [-74.0746, 41.7474] },
 
   // WORK DEMOS (CLIENT LOCATION)
   { type: "ai", content: '<strong>AI Chatbot Pilot</strong> for city 311 platform', place: "Indiana", coordinates: [-85.15, 41.07] },
-  { type: "ai", content: '<strong>AI Chatbot Demo</strong> for city staff', place: "California", coordinates: [-122.4194, 37.7749] },
-  { type: "ai", content: '<strong>AI Permit Reviewer Paid Pilot</strong> for city planners', place: "Washington", coordinates: [-122.3321, 47.6062] },
-  { type: "ai", content: '<strong>AI Permit Reviewer Demo</strong> for city CIOs', place: "Texas", coordinates: [-95.3698, 29.7604] },
-  { type: "ai", content: 'Showcasing our <strong>AI Permit Reviewer and Chatbot</strong>', place: '<a href="https://fall.smartcitiesconnect.org/" target="_blank" rel="noopener noreferrer"><strong>Smart Cities Connect 2025</strong></a> (National Harbor, MD)', coordinates: [-77.0369, 38.9638] },
-  { type: "ai", content: '<strong>National Planning Conference</strong> seminar for AI Permit Review', place: "Detroit", coordinates: [-83.05, 42.33] },
+  // { type: "ai", content: '<strong>AI Chatbot Demo</strong> for city staff', place: "California", coordinates: [-122.4194, 37.7749] },
+  { type: "ai", content: '<strong>AI Permit Reviewer Pilot</strong> for city plan reviewers', place: "Washington", coordinates: [-122.3321, 47.6062] },
+  { type: "ai", content: '<strong>AI Permit Reviewer Pilot</strong> for city inspectors', place: "Texas", coordinates: [-95.3698, 29.7604] },
+  { type: "ai", content: 'Showcasing our <strong>AI GovTech Platform</strong>', place: '<a href="https://fall.smartcitiesconnect.org/" target="_blank" rel="noopener noreferrer"><strong>Smart Cities Connect 2025</strong></a> (National Harbor, MD)', coordinates: [-77.0369, 38.9638] },
+  { type: "ai", content: 'Seminar on our <strong>AI Permit Reviewer</strong>', place: 'the <a href="https://www.planning.org/conference/" target="_blank" rel="noopener noreferrer"><strong>National Planning Conference 2026</strong></a> (Detroit, MI)', coordinates: [-83.05, 42.33] },
 ];
 
 const d3 = window.d3;
@@ -81,6 +81,7 @@ const zoom = d3.zoom()
           if (stickyMarker) {
               stickyMarker = null;
               tooltip.classed("is-visible", false);
+              hideAllArcs();
           }
       }
   })
@@ -149,7 +150,7 @@ function drawMarkers() {
           showArcsForMarkerId(id);
       })
       .on("mouseleave", () => {
-          hideAllArcs();
+          if (!stickyMarker) hideAllArcs();
       })
       .on("click", (event, d) => {
           event.stopPropagation();
@@ -174,9 +175,12 @@ function renderTooltip(d) {
   tooltip.select(".tooltip-close").on("click", () => {
       stickyMarker = null;
       tooltip.classed("is-visible", false);
+      hideAllArcs();
   });
 
   tooltip.classed("is-visible", true);
+  // While tooltip is open, show all arcs for this category
+  showArcsForType(d.type);
 }
 
 function positionTooltipAtElement(el) {
@@ -292,6 +296,10 @@ function drawArcs() {
 function showArcsForMarkerId(markerId) {
   const isLinked = d => d.sourceId === markerId || d.targetId === markerId;
   gMap.selectAll("path.arc").classed("is-visible", isLinked);
+}
+
+function showArcsForType(type) {
+  gMap.selectAll("path.arc").classed("is-visible", d => d.type === type);
 }
 
 function hideAllArcs() {
