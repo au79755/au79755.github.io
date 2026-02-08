@@ -29,6 +29,7 @@ const markers = [
   { type: "demo", content: '<a href="https://austinlu.com/publication/2022-10-01-cloud-research" target="_blank" rel="noopener noreferrer"><strong>Cloud-based Research Platform</strong></a>', place: "Munich", coordinates: [11.5761, 48.1371] },
 
   // WORK DEMOS (CLIENT LOCATION)
+  { type: "ai", content: '<strong>National Planning Conference</strong> seminar for AI Permit Review', place: "Detroit", coordinates: [-83.05, 42.33] },
   { type: "ai", content: '<strong>AI Chatbot Pilot</strong> for city 311 platform', place: "Indiana", coordinates: [-85.15, 41.07] },
   { type: "ai", content: '<strong>AI Chatbot Demo</strong> for city staff', place: "California", coordinates: [-122.4194, 37.7749] },
   { type: "ai", content: '<strong>AI Permit Reviewer Paid Pilot</strong> for city planners', place: "Washington", coordinates: [-122.3321, 47.6062] },
