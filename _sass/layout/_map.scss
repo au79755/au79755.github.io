@@ -52,10 +52,17 @@
 }
 
 #map-container .country {
-  fill: var(--global-text-color);
-  stroke: var(--global-bg-color);
-  stroke-width: 1.5px;
-  opacity: 0.3;
+  fill: var(--global-bg-color);
+  stroke: color-mix(in srgb, var(--global-text-color) 60%, var(--global-bg-color));
+  stroke-width: 1px;
+  opacity: 1;
+}
+
+/* State borders overlay */
+.state-borders {
+  fill: none;
+  stroke: none;
+  vector-effect: non-scaling-stroke;
 }
 
 /* Legend styling aligned with marker types */

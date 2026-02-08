@@ -7,9 +7,10 @@ redirect_from:
   - /about.html
 ---
 
-I'm the co-founder and CTO at *The Common AI, Inc.*, where my focus is on execution: turning novel AI concepts into robust, scalable products that create tangible value. [Explore our platform](https://www.thecommonai.com/).
+I’m the co-founder and CTO at **The Common AI, Inc.**, a Texas-based innovation lab building the next generation of agentic GovTech for SLED. Our mission is to accelerate the administrative backbone of American cities, nationwide.
 
-I bring a full-spectrum technical background to the table. As a leader, I guide our strategy in **generative AI** and **multimodal R&D**. As a hands-on engineer, I ensure we build with discipline, architecting the complex data pipelines and resilient cloud infrastructure necessary to ship innovative technology that works.
+My current focus is the rollout of our **multimodal AI copilot for permitting and licensing**. We’re also scaling our industry footprint through partnerships and events like the upcoming **APA National Planning Conference**.
 
+Previously, I was a researcher in AI, Machine Learning, and Robotics at the **University of Illinois**, where I was a recipient of multiple fellowships and my work was featured in popular tech press.
 
 {% include map.html %}
