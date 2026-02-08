@@ -128,3 +128,28 @@ svg:focus, .marker:focus {
   stroke: var(--global-bg-color);
   stroke-width: 1px;
 }
+
+/* Dotted arcs connecting WORK DEMOS markers */
+.arc {
+  fill: none;
+  stroke: var(--global-text-color);
+  opacity: 0.6;
+  stroke-width: 1.5px;
+  stroke-dasharray: 4 4;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Arc colors inherit section palette */
+.arc.ai {
+  stroke: $info-color;
+}
+.arc.experience {
+  stroke: $danger-color;
+}
+.arc.publication {
+  stroke: $warning-color;
+}
+.arc.demo {
+  stroke: $success-color;
+}
