@@ -2,34 +2,53 @@
 (function () {
   // Legend config and renderer
 const legendItems = [
-  { key: "ai", label: "CTO @ The Common AI, Inc. (Pilots, Talks)" },
-  { key: "publication", label: "Ex-AI/ML Research @ Illinois (Papers, Presentations)" },
+  { key: "ai", coordinates: [-96.8067, 32.7767], label: '<a href="https://austinlu.com/experience/2025-cofounder" target="_blank" rel="noopener noreferrer"><strong>CTO &amp; Cofounder</strong></a> @ The Common AI, Inc.' },
+  { key: "publication", coordinates: [-88.2434, 40.1164], label: "Ex-AI/ML Research @ University of Illinois" },
 ];
 
 // Markers config
 const markers = [
   // Ex-AI/ML Research @ Illinois (Papers, Presentations)
-  { type: "publication", content: '<a href="https://austinlu.com/publication/2022-05-08-mechatronic" target="_blank" rel="noopener noreferrer"><strong>Published Research (Cloud Robotics)</strong></a>', place: "Nashville", coordinates: [-86.7816, 36.1627] },
-  { type: "publication", content: '<a href="https://austinlu.com/publication/2023-10-23-interactive-demo" target="_blank" rel="noopener noreferrer"><strong>Digital Twin Demo</strong></a>', place: "New Paltz", coordinates: [-74.0746, 41.7474] },
-  { type: "publication", content: '<a href="https://austinlu.com/publication/2024-03-01-delay-constrained" target="_blank" rel="noopener noreferrer"><strong>Published Research (HCI)</strong></a>', place: "Ottawa", coordinates: [-75.6972, 45.4215] },
-  { type: "publication", content: '<strong>Marine Expedition Training</strong>', place: "Shinnecock Bay", coordinates: [-72.4949, 40.8534] },
-  { type: "publication", content: '<a href="https://austinlu.com/publication/2024-08-27-discovery-partners" target="_blank" rel="noopener noreferrer"><strong>Intl. Partners Exhibition</strong></a>', place: "Chicago", coordinates: [-87.6298, 41.8781] },
-  { type: "publication", content: '<a href="https://austinlu.com/publication/2025-07-05-latent-fxlms" target="_blank" rel="noopener noreferrer"><strong>Published Research (AI/ML)</strong></a>', place: "Champaign", coordinates: [-88.2434, 40.1164] },
+  { type: "publication", curvature: 0.14, content: '2022 Q2 <a href="https://austinlu.com/publication/2022-05-08-mechatronic" target="_blank" rel="noopener noreferrer"><strong>Robotic Orchestration</strong></a>', place: "Nashville", coordinates: [-86.7816, 36.1627] },
+  { type: "publication", curvature: 0.4, content: '2022 Q4 <a href="https://austinlu.com/publication/2022-10-01-cloud-research.md" target="_blank" rel="noopener noreferrer"><strong>Cloud Robotics</strong></a>', place: "Munich (Germany)", coordinates: [-68, 42.5] },
+  {
+    type: "publication",
+    curvature: 0.14,
+    content: `2023 Q1
+      <a href="https://austinlu.com/publication/2023-03-01-bandwidth-extension" target="_blank" rel="noopener noreferrer">[1]</a>
+      <a href="https://austinlu.com/publication/2023-03-01-mechanized-panels" target="_blank" rel="noopener noreferrer">[2]</a>
+      <a href="https://austinlu.com/publication/2023-03-01-printed-simulators" target="_blank" rel="noopener noreferrer">[3]</a>
+      <a href="https://austinlu.com/publication/2023-03-01-source-separation-bandlimited" target="_blank" rel="noopener noreferrer">[3]</a>
+      `,
+    place: "Chicago",
+    coordinates: [-87.6298, 41.8781]
+  },
+  {
+    type: "publication",
+    curvature: 0,
+    content: '2023 Q2 <a href="https://austinlu.com/publication/2023-05-08-investigating-sample-bias" target="_blank" rel="noopener noreferrer"><strong>Multiple: AI/ML for Human-Computer Interaction</strong></a>',
+    place: "Champaign",
+    coordinates: [-88.2434, 40.1164]
+  },
+  { type: "publication", curvature: 0.14, content: '2023 Q4 <a href="https://austinlu.com/publication/2023-10-23-interactive-demo" target="_blank" rel="noopener noreferrer"><strong>Interactive Digital Twins</strong></a>', place: "New Paltz", coordinates: [-74.0746, 41.7474] },
+  { type: "publication", curvature: 0.3, content: '2024 Q1 <a href="https://austinlu.com/publication/2024-03-01-delay-constrained" target="_blank" rel="noopener noreferrer"><strong>Wearable Implants for Human Computer Interaction</strong></a>', place: "Ottawa", coordinates: [-75.6972, 45.4215] },
+  // { type: "publication", curvature: 0.14, content: '2024 Q2 <strong>Oceanography and Robotics training</strong>', place: "Shinnecock Bay", coordinates: [-72.4949, 40.8534] },
+  { type: "publication", curvature: 0.14, content: '2024 Q3 <a href="https://austinlu.com/publication/2024-08-27-discovery-partners" target="_blank" rel="noopener noreferrer"><strong>International Innovation Showcase</strong></a>', place: "Chicago", coordinates: [-87.6298, 41.8781] },
+  { type: "publication", curvature: 0.14, content: '2025 Q3 <a href="https://austinlu.com/publication/2025-07-05-latent-fxlms" target="_blank" rel="noopener noreferrer"><strong>AI/ML: Latent Signal Processing</strong></a>', place: "Malaga (Spain)", coordinates: [-71.5, 39] },
 
   // CTO @ The Common AI, Inc. (Pilots, Talks)
-  { type: "ai", content: '<a href="https://austinlu.com/experience/2025-cofounder" target="_blank" rel="noopener noreferrer"><strong>CTO & Cofounder</strong></a>', place: "Dallas", coordinates: [-96.9, 32.78] }, // tweak: slightly west
-  { type: "ai", content: '<strong>AI Chatbot Pilot</strong> for city 311 platform', place: "Indiana", coordinates: [-85.15, 41.07] },
-  { type: "ai", content: '<strong>AI Chatbot Demo</strong> for city staff', place: "California", coordinates: [-122.4194, 37.7749] },
-  { type: "ai", content: '<strong>AI Permit Review Pilot</strong> for city plan reviewers', place: "Washington", coordinates: [-122.3321, 47.6062] },
-  { type: "ai", content: '<strong>AI Permit Review Pilot</strong> for city inspectors', place: "Texas", coordinates: [-95.3698, 29.7604] },
-  { type: "ai", content: 'Showcasing our <strong>AI GovTech Platform</strong>', place: '<a href="https://fall.smartcitiesconnect.org/" target="_blank" rel="noopener noreferrer"><strong>Smart Cities Connect 2025</strong></a> (National Harbor, MD)', coordinates: [-77.0369, 38.9638] },
-  { type: "ai", content: 'Seminar on <strong>AI Permit Review</strong>', place: 'the <a href="https://www.planning.org/conference/" target="_blank" rel="noopener noreferrer"><strong>National Planning Conference 2026</strong></a> (Detroit, MI)', coordinates: [-83.05, 42.33] },
+  // { type: "ai", curvature: 0.6, content: '2025 Q1 <strong>AI Chatbot Pilot</strong> for city 311 platform', place: "Indiana", coordinates: [-85.15, 41.07] },
+  { type: "ai", curvature: 0.2, content: '2025 Q2 <strong>AI Chatbot Demo</strong> for city staff', place: "California", coordinates: [-122.4194, 37.7749] },
+  { type: "ai", curvature: 0.3, content: '2025 Q3 <strong>AI Permit Review Pilot</strong> for city plan reviewers', place: "Washington", coordinates: [-122.3321, 47.6062] },
+  { type: "ai", curvature: 0.3, content: '2025 Q4 Showcasing our <strong>AI GovTech Platform</strong>', place: '<a href="https://fall.smartcitiesconnect.org/" target="_blank" rel="noopener noreferrer"><strong>Smart Cities Connect 2025</strong></a> (National Harbor, MD)', coordinates: [-77.0369, 38.9638] },
+  { type: "ai", curvature: 0, content: '2026 Q1 <strong>AI Permit Review Pilot</strong> for city inspectors', place: "Dallas", coordinates: [-96.8067, 32.7767] },
+  { type: "ai", curvature: 0.6, content: '2026 Q2 Seminar on <strong>AI Permit Review</strong>', place: 'the <a href="https://www.planning.org/conference/" target="_blank" rel="noopener noreferrer"><strong>National Planning Conference 2026</strong></a> (Detroit, MI)', coordinates: [-83.05, 42.33] },
 ];
 
 const d3 = window.d3;
 const topojson = window.topojson;
 
-const radius = 6;
+const radius = 5;
 const container = document.getElementById('map-container');
 let { width, height } = container.getBoundingClientRect();
 if (!width || !height) { width = 1000; height = 600; }
@@ -192,13 +211,11 @@ function renderLegend() {
           .attr("r", 5);
   });
 
-  items.append("span").text(d => d.label);
+  items.append("span").html(d => d.label);
 }
 
-// ----- Arcs between consecutive markers per category -----
-const arcCurvature = 0.7;
-
-function buildCurvedArcPath(fromLonLat, toLonLat, curvature = arcCurvature) {
+// ----- Star arcs: hub in each category connects to all others -----
+function buildCurvedArcPath(fromLonLat, toLonLat, curvature = 0.2) {
   const [ax, ay] = projection(fromLonLat);
   const [bx, by] = projection(toLonLat);
   const mx = (ax + bx) / 2;
@@ -219,19 +236,18 @@ function buildCurvedArcPath(fromLonLat, toLonLat, curvature = arcCurvature) {
 }
 
 function drawArcs() {
-  const categories = ["ai", "publication"];
   const arcs = [];
-  categories.forEach(type => {
+  legendItems.forEach(legend => {
+    if (!legend.coordinates) return;
+    const type = legend.key;
+    const hubCoords = legend.coordinates;
+    const hubId = `hub-${type}`;
     const list = markers.filter(m => m.type === type && Array.isArray(m.coordinates));
-    if (list.length < 2) return;
-    for (let i = 0; i < list.length - 1; i++) {
-      const a = list[i];
-      const b = list[i + 1];
-      const sourceId = a.id || getMarkerId(a);
-      const targetId = b.id || getMarkerId(b);
-      const dPath = buildCurvedArcPath(a.coordinates, b.coordinates);
-      arcs.push({ type, sourceId, targetId, d: dPath });
-    }
+    list.forEach(spoke => {
+      const spokeId = spoke.id || getMarkerId(spoke);
+      const dPath = buildCurvedArcPath(hubCoords, spoke.coordinates, spoke.curvature);
+      arcs.push({ type, sourceId: hubId, targetId: spokeId, d: dPath });
+    });
   });
   gMap.selectAll("path.arc")
     .data(arcs)
