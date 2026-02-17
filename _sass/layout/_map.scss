@@ -1,43 +1,14 @@
-#tooltip {
-  position: absolute;
-  background-color: var(--global-bg-color);
+#map-info {
+  text-align: center;
+  padding: 6px 12px;
+  font-size: $type-size-6;
   color: var(--global-text-color);
-  padding: 4px 6px;
-  border: 1px solid var(--global-border-color);
-  border-radius: $border-radius;
-  pointer-events: none;
+  min-height: 1.6em;
   opacity: 0;
   transition: opacity 0.2s;
-  font-size: $type-size-6;
-  max-width: 20%;
-  white-space: normal;
-  word-wrap: break-word;
 }
-#tooltip.is-visible {
+#map-info.is-visible {
   opacity: 1;
-  pointer-events: auto;
-}
-
-#tooltip .tooltip-main {
-  margin: 0;
-  padding: 0 18px 0 0;
-  display: inline; /* allow natural wrapping */
-}
-#tooltip .tooltip-close {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  background: transparent;
-  border: none;
-  color: var(--global-text-color);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 14px;
-  height: 14px;
-  margin: 0;
-  padding: 0;
 }
 
 #map-container {
@@ -84,15 +55,7 @@
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
-  /* Use transform-based scaling for hover/focus states */
-  transform-box: fill-box;
-  transform-origin: center;
-  transition: transform 0.15s ease-in-out, fill 0.2s ease-in-out;
-}
-/* Hover/active enlargement without changing the circle's base r */
-.marker:hover,
-.marker.is-active {
-  transform: scale(1.4);
+  transition: fill 0.2s ease-in-out;
 }
 
 svg:focus, .marker:focus {

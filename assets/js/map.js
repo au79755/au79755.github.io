@@ -9,8 +9,8 @@ const legendItems = [
 // Markers config
 const markers = [
   // Ex-AI/ML Research @ Illinois (Papers, Presentations)
-  { type: "publication", curvature: 0.14, content: '2022 Q2 <a href="https://austinlu.com/publication/2022-05-08-mechatronic" target="_blank" rel="noopener noreferrer"><strong>Robotic Orchestration</strong></a>', place: "Nashville", coordinates: [-86.7816, 36.1627] },
-  { type: "publication", curvature: 0.4, content: '2022 Q4 <a href="https://austinlu.com/publication/2022-10-01-cloud-research.md" target="_blank" rel="noopener noreferrer"><strong>Cloud Robotics</strong></a>', place: "Munich (Germany)", coordinates: [-68, 42.5] },
+  { type: "publication", curvature: 0.14, content: '2022 Q2 <a href="https://austinlu.com/publication/2022-05-08-mechatronic" target="_blank" rel="noopener noreferrer"><strong>Robotic Orchestration</strong></a>', place: "Nashville, TN", coordinates: [-86.7816, 36.1627] },
+  { type: "publication", curvature: 0.4, content: '2022 Q4 <a href="https://austinlu.com/publication/2022-10-01-cloud-research.md" target="_blank" rel="noopener noreferrer"><strong>Cloud Robotics</strong></a>', place: "Munich, Germany", coordinates: [-68, 42.5] },
   {
     type: "publication",
     curvature: 0.14,
@@ -20,35 +20,36 @@ const markers = [
       <a href="https://austinlu.com/publication/2023-03-01-printed-simulators" target="_blank" rel="noopener noreferrer">[3]</a>
       <a href="https://austinlu.com/publication/2023-03-01-source-separation-bandlimited" target="_blank" rel="noopener noreferrer">[3]</a>
       `,
-    place: "Chicago",
+    place: "Chicago, IL",
     coordinates: [-87.6298, 41.8781]
   },
   {
     type: "publication",
     curvature: 0,
     content: '2023 Q2 <a href="https://austinlu.com/publication/2023-05-08-investigating-sample-bias" target="_blank" rel="noopener noreferrer"><strong>Multiple: AI/ML for Human-Computer Interaction</strong></a>',
-    place: "Champaign",
+    place: "Champaign, IL",
     coordinates: [-88.2434, 40.1164]
   },
-  { type: "publication", curvature: 0.14, content: '2023 Q4 <a href="https://austinlu.com/publication/2023-10-23-interactive-demo" target="_blank" rel="noopener noreferrer"><strong>Interactive Digital Twins</strong></a>', place: "New Paltz", coordinates: [-74.0746, 41.7474] },
-  { type: "publication", curvature: 0.3, content: '2024 Q1 <a href="https://austinlu.com/publication/2024-03-01-delay-constrained" target="_blank" rel="noopener noreferrer"><strong>Wearable Implants for Human Computer Interaction</strong></a>', place: "Ottawa", coordinates: [-75.6972, 45.4215] },
+  { type: "publication", curvature: 0.14, content: '2023 Q4 <a href="https://austinlu.com/publication/2023-10-23-interactive-demo" target="_blank" rel="noopener noreferrer"><strong>Interactive Digital Twins</strong></a>', place: "New Paltz, NY", coordinates: [-74.0746, 41.7474] },
+  { type: "publication", curvature: 0.3, content: '2024 Q1 <a href="https://austinlu.com/publication/2024-03-01-delay-constrained" target="_blank" rel="noopener noreferrer"><strong>Wearable Implants for Human Computer Interaction</strong></a>', place: "Ottawa, Canada", coordinates: [-75.6972, 45.4215] },
   // { type: "publication", curvature: 0.14, content: '2024 Q2 <strong>Oceanography and Robotics training</strong>', place: "Shinnecock Bay", coordinates: [-72.4949, 40.8534] },
-  { type: "publication", curvature: 0.14, content: '2024 Q3 <a href="https://austinlu.com/publication/2024-08-27-discovery-partners" target="_blank" rel="noopener noreferrer"><strong>International Innovation Showcase</strong></a>', place: "Chicago", coordinates: [-87.6298, 41.8781] },
-  { type: "publication", curvature: 0.14, content: '2025 Q3 <a href="https://austinlu.com/publication/2025-07-05-latent-fxlms" target="_blank" rel="noopener noreferrer"><strong>AI/ML: Latent Signal Processing</strong></a>', place: "Malaga (Spain)", coordinates: [-71.5, 39] },
+  { type: "publication", curvature: 0.14, content: '2024 Q3 <a href="https://austinlu.com/publication/2024-08-27-discovery-partners" target="_blank" rel="noopener noreferrer"><strong>International Innovation Showcase</strong></a>', place: "Chicago, IL", coordinates: [-87.6298, 41.8781] },
+  { type: "publication", curvature: 0.14, content: '2025 Q3 <a href="https://austinlu.com/publication/2025-07-05-latent-fxlms" target="_blank" rel="noopener noreferrer"><strong>AI/ML: Latent Signal Processing</strong></a>', place: "Malaga, Spain", coordinates: [-71.5, 39] },
 
   // CTO @ The Common AI, Inc. (Pilots, Talks)
   // { type: "ai", curvature: 0.6, content: '2025 Q1 <strong>AI Chatbot Pilot</strong> for city 311 platform', place: "Indiana", coordinates: [-85.15, 41.07] },
-  { type: "ai", curvature: 0.2, content: '2025 Q2 <strong>AI Chatbot Demo</strong> for city staff', place: "California", coordinates: [-122.4194, 37.7749] },
-  { type: "ai", curvature: 0.3, content: '2025 Q3 <strong>AI Permit Review Pilot</strong> for city plan reviewers', place: "Washington", coordinates: [-122.3321, 47.6062] },
-  { type: "ai", curvature: 0.3, content: '2025 Q4 Showcasing our <strong>AI GovTech Platform</strong>', place: '<a href="https://fall.smartcitiesconnect.org/" target="_blank" rel="noopener noreferrer"><strong>Smart Cities Connect 2025</strong></a> (National Harbor, MD)', coordinates: [-77.0369, 38.9638] },
-  { type: "ai", curvature: 0, content: '2026 Q1 <strong>AI Permit Review Pilot</strong> for city inspectors', place: "Dallas", coordinates: [-96.8067, 32.7767] },
-  { type: "ai", curvature: 0.6, content: '2026 Q2 Seminar on <strong>AI Permit Review</strong>', place: 'the <a href="https://www.planning.org/conference/" target="_blank" rel="noopener noreferrer"><strong>National Planning Conference 2026</strong></a> (Detroit, MI)', coordinates: [-83.05, 42.33] },
+  { type: "ai", curvature: 0.2, content: '2025 Q2 <strong>AI Chatbot Demo</strong> for city staff', place: "CA", coordinates: [-122.4194, 37.7749] },
+  { type: "ai", curvature: 0.3, content: '2025 Q3 <strong>AI Permit Review Pilot</strong> for city plan reviewers', place: "WA", coordinates: [-122.3321, 47.6062] },
+  { type: "ai", curvature: 0.3, content: '2025 Q4 Showcasing our <strong>AI GovTech Platform</strong>', place: '<a href="https://fall.smartcitiesconnect.org/" target="_blank" rel="noopener noreferrer"><strong>Smart Cities Connect 2025</strong></a> at National Harbor, MD', coordinates: [-77.0369, 38.9638] },
+  { type: "ai", curvature: 0, content: '2026 Q1 <strong>AI Permit Review Pilot</strong> for city inspectors', place: "Dallas, TX", coordinates: [-96.8067, 32.7767] },
+  { type: "ai", curvature: 0.6, content: '2026 Q2 Seminar on <strong>AI Permit Review</strong>', place: 'the <a href="https://www.planning.org/conference/" target="_blank" rel="noopener noreferrer"><strong>National Planning Conference 2026</strong></a> in Detroit, MI', coordinates: [-83.05, 42.33] },
 ];
 
 const d3 = window.d3;
 const topojson = window.topojson;
 
 const radius = 5;
+const radiusHover = 8;
 const container = document.getElementById('map-container');
 let { width, height } = container.getBoundingClientRect();
 if (!width || !height) { width = 1000; height = 600; }
@@ -63,7 +64,7 @@ const svg = d3.select("#map-container")
 
 const gMap = svg.append("g");
 const gMarkers = svg.append("g");
-const tooltip = d3.select("#tooltip");
+const mapInfo = d3.select("#map-info");
 let stickyMarker = null;
 
 const projection = d3.geoMercator();
@@ -112,12 +113,13 @@ d3.json(mapDataUrl).then(data => {
   renderLegend();
 });
 
-// Close tooltip when clicking outside a marker
+// Clear info bar when clicking outside a marker
 svg.on("click", () => {
   if (stickyMarker) {
     stickyMarker = null;
-    tooltip.classed("is-visible", false);
+    mapInfo.classed("is-visible", false);
     gMap.selectAll("path.arc").classed("is-highlight", false);
+    gMarkers.selectAll("circle.marker").transition().duration(150).attr("r", radius);
   }
 });
 
@@ -132,17 +134,23 @@ function drawMarkers() {
       .attr("cx", d => projection(d.coordinates)[0])
       .attr("cy", d => projection(d.coordinates)[1])
       .attr("r", radius)
-      .on("mouseenter", (event, d) => {
+      .on("mouseenter", function (event, d) {
+          d3.select(this).transition().duration(150).attr("r", radiusHover);
           gMap.selectAll("path.arc").classed("is-highlight", dd => dd.type === d.type);
+          raiseHighlightedArcs();
       })
-      .on("mouseleave", () => {
+      .on("mouseleave", function () {
+          if (!stickyMarker || stickyMarker !== d3.select(this).datum()) {
+            d3.select(this).transition().duration(150).attr("r", radius);
+          }
           if (!stickyMarker) gMap.selectAll("path.arc").classed("is-highlight", false);
       })
-      .on("click", (event, d) => {
+      .on("click", function (event, d) {
           event.stopPropagation();
+          gMarkers.selectAll("circle.marker").transition().duration(150).attr("r", radius);
+          d3.select(this).transition().duration(150).attr("r", radiusHover);
           stickyMarker = d;
-          renderTooltip(d);
-          positionTooltipAtElement(event.currentTarget);
+          showInfo(d);
       });
 }
 
@@ -150,35 +158,11 @@ function getMarkerId(d) {
   return `${d.type}-${Math.round(d.coordinates[0]*10000)}-${Math.round(d.coordinates[1]*10000)}`;
 }
 
-function renderTooltip(d) {
-  tooltip.html(`
-      <div class="tooltip-main">
-        ${d.content} in ${d.place}
-      </div>
-      <button class="tooltip-close" aria-label="Close">×</button>
-  `);
-
-  tooltip.select(".tooltip-close").on("click", () => {
-      stickyMarker = null;
-      tooltip.classed("is-visible", false);
-      gMap.selectAll("path.arc").classed("is-highlight", false);
-  });
-
-  tooltip.classed("is-visible", true);
-  // Keep arc highlight while tooltip is open
+function showInfo(d) {
+  mapInfo.html(`${d.content} in ${d.place}`);
+  mapInfo.classed("is-visible", true);
   gMap.selectAll("path.arc").classed("is-highlight", dd => dd.type === d.type);
-}
-
-function positionTooltipAtElement(el) {
-  if (!el) return;
-  const rect = el.getBoundingClientRect();
-  const left = rect.left + window.scrollX + rect.width / 2 + 10;
-  const top = rect.top + window.scrollY - 10;
-
-  const node = tooltip.node();
-  if (!node) return;
-
-  tooltip.style("left", left + "px").style("top", top + "px");
+  raiseHighlightedArcs();
 }
 
 function renderLegend() {
