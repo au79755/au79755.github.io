@@ -41,7 +41,7 @@ const markers = [
   { type: "ai", curvature: 0.2, content: '2025 Q2 <strong>AI Chatbot Demo</strong> for city staff', place: "CA", coordinates: [-122.4194, 37.7749] },
   { type: "ai", curvature: 0.3, content: '2025 Q3 <strong>AI Permit Review Pilot</strong> for city plan reviewers', place: "WA", coordinates: [-122.3321, 47.6062] },
   { type: "ai", curvature: 0.3, content: '2025 Q4 Showcasing our <strong>AI GovTech Platform</strong>', place: '<a href="https://fall.smartcitiesconnect.org/" target="_blank" rel="noopener noreferrer"><strong>Smart Cities Connect 2025</strong></a> at National Harbor, MD', coordinates: [-77.0369, 38.9638] },
-  { type: "ai", curvature: 0, content: '2026 Q1 <strong>AI Permit Review Pilot</strong> for city inspectors', place: "Dallas, TX", coordinates: [-96.8067, 32.7767] },
+  { type: "ai", curvature: 0, content: '2026 Q1 <strong>AI Permit Review Pilot</strong> for city inspectors', place: "TX", coordinates: [-96.8067, 32.7767] },
   { type: "ai", curvature: 0.6, content: '2026 Q2 Seminar on <strong>AI Permit Review</strong>', place: 'the <a href="https://www.planning.org/conference/" target="_blank" rel="noopener noreferrer"><strong>National Planning Conference 2026</strong></a> in Detroit, MI', coordinates: [-83.05, 42.33] },
 ];
 
