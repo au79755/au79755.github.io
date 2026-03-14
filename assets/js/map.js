@@ -3,7 +3,7 @@
   // Legend config and renderer
 const legendItems = [
   { key: "ai", coordinates: [-96.8067, 32.7767], label: '<a href="https://austinlu.com/experience/2025-cofounder" target="_blank" rel="noopener noreferrer"><strong>CTO &amp; Cofounder</strong></a> @ The Common AI, Inc.' },
-  { key: "publication", coordinates: [-88.2434, 40.1164], label: "Ex-AI/ML Research @ University of Illinois" },
+  { key: "publication", coordinates: [-88.2434, 40.1164], label: '<a href="https://acsinger.ece.illinois.edu/research/group-members/" target="_blank" rel="noopener noreferrer">Ex-AI/ML Research</a> @ University of Illinois' },
 ];
 
 // Markers config
