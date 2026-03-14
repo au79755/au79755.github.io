@@ -39,13 +39,13 @@
     {% endif %}
 
         {% if post.collection == 'experience' %}
-        <!-- <p> <i>{{ post.venue }} ({{ post.type }})</i>, {{ post.date | default: "2019-01-01" | date: "%b %Y" }} - {{ post.edate | default: "Current" | date: "%b %Y" }} </p>   -->
+        <!-- <p> <i>{{ post.venue }} ({{ post.type }})</i>, {{ post.sdate }} - {{ post.date }} </p>   -->
           <p class="page__date">
             <strong><i class="fa fa-fw fa-briefcase" aria-hidden="true"></i> Employer: </strong> 
               {{ post.venue }}
             <br/>
             <strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Date: </strong> 
-              {{ post.date | default: "2019-01-01" | date: "%b %Y" }} - {{ post.edate | default: "Current" | date: "%b %Y" }}
+              {{ post.sdate | default: "2019-01-01" | date: "%b %Y" }} - {% if post.current %}Current{% else %}{{ post.date | date: "%b %Y" }}{% endif %}
             <br/>
             <strong><i class="fa fa-fw fa-city" aria-hidden="true"></i> Location: </strong> {{ post.location }}
           </p>

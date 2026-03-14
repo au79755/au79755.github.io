@@ -35,13 +35,13 @@ layout: default
         {% endif %}
         
         {% if page.collection == 'experience' %}
-        <!-- <p> <i>{{ page.venue }} ({{ page.type }})</i>, {{ page.date | default: "2019-01-01" | date: "%b %Y" }} - {{ page.edate | default: "Current" | date: "%b %Y" }} </p>   -->
+        <!-- <p> <i>{{ page.venue }} ({{ page.type }})</i>, {{ page.sdate }} - {{ page.date }} </p>   -->
           <p class="page__date">
             <strong><i class="fa fa-fw fa-briefcase" aria-hidden="true"></i> Employer: </strong> 
               {{ page.venue }}
             <br/>
             <strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Date: </strong> 
-              {{ page.date | default: "2019-01-01" | date: "%b %Y" }} - {{ page.edate | default: "Current" | date: "%b %Y" }}
+              {{ page.sdate | default: "2019-01-01" | date: "%b %Y" }} - {% if page.current %}Current{% else %}{{ page.date | date: "%b %Y" }}{% endif %}
             <br/>
             <strong><i class="fa fa-fw fa-city" aria-hidden="true"></i> Location: </strong> {{ page.location }}
           </p>
