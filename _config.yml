@@ -26,10 +26,10 @@ author:
   avatar           : "prof2.jpg"
   name             : "Austin Lu"
   pronouns         : # example: "she/her"  
-  bio              : "Co-founder and CTO <br/>@ The Common AI"
+  bio              : "Co-founder and CTO <br/>@ PermitSight"
   location         : "Texas, USA"
-  employer         : "The Common AI"
-  employer_url     : "https://thecommonai.com"
+  employer         : "PermitSight"
+  employer_url     : "https://permitsight.ai"
   uri              : # URL
   email            : "austin.lu@thecommonai.com"
 

@@ -2,7 +2,7 @@
 (function () {
   // Legend config and renderer
 const legendItems = [
-  { key: "ai", coordinates: [-96.8067, 32.7767], label: '<a href="https://austinlu.com/experience/2025-cofounder" target="_blank" rel="noopener noreferrer"><strong>CTO &amp; Cofounder</strong></a> @ The Common AI, Inc.' },
+  { key: "ai", coordinates: [-96.8067, 32.7767], label: '<a href="https://austinlu.com/experience/2025-cofounder" target="_blank" rel="noopener noreferrer"><strong>CTO &amp; Cofounder</strong></a> @ PermitSight' },
   { key: "publication", coordinates: [-88.2434, 40.1164], label: '<a href="https://acsinger.ece.illinois.edu/research/group-members/" target="_blank" rel="noopener noreferrer">Ex-AI/ML Research</a> @ University of Illinois' },
 ];
 
@@ -36,7 +36,7 @@ const markers = [
   { type: "publication", curvature: 0.14, content: '2024 Q3 <a href="https://austinlu.com/publication/2024-08-27-discovery-partners" target="_blank" rel="noopener noreferrer"><strong>International Innovation Showcase</strong></a>', place: "Chicago, IL", coordinates: [-87.6298, 41.8781] },
   { type: "publication", curvature: 0.14, content: '2025 Q3 <a href="https://austinlu.com/publication/2025-07-05-latent-fxlms" target="_blank" rel="noopener noreferrer"><strong>AI/ML: Latent Signal Processing</strong></a>', place: "Malaga, Spain", coordinates: [-71.5, 39] },
 
-  // CTO @ The Common AI, Inc. (Pilots, Talks)
+  // CTO (Pilots, Talks)
   // { type: "ai", curvature: 0.6, content: '2025 Q1 <strong>AI Chatbot Pilot</strong> for city 311 platform', place: "Indiana", coordinates: [-85.15, 41.07] },
   { type: "ai", curvature: 0.2, content: '2025 Q2 <strong>AI Chatbot Demo</strong> for city staff', place: "CA", coordinates: [-122.4194, 37.7749] },
   { type: "ai", curvature: 0.3, content: '2025 Q3 <strong>AI Permit Review Pilot</strong> for city plan reviewers', place: "WA", coordinates: [-122.3321, 47.6062] },
